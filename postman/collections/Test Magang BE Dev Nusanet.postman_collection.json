@@ -1,0 +1,72 @@
+{
+  "info": {
+    "_postman_id": "633a2b0e-4df5-46bf-844c-80f6c4f1cb9c",
+    "name": "Test Magang BE Dev Nusanet",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "list_jadwal",
+      "id": "d5bff60c-dea1-44d4-9f70-f32c4e3e96eb",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "list_jadwal_by_user_id",
+      "id": "7abbe3f9-7803-4395-81b4-f203baf2da8d",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "list_jadwal_user_not_exist",
+      "id": "ad19b956-b2e9-40fe-800f-bc118d4757ac",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "cek_jadwal_user",
+      "id": "b779aa65-d663-4ea9-9079-379fda4a0e8c",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "jadwal_xlsx",
+      "id": "3712a918-87a9-47a1-abe8-ce9501e43b56",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "jadwal_xlsx_by_user_id",
+      "id": "a4132a58-762f-43ac-a4b2-a4bb272f6c5f",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "jadwal_xlsx_with_user_not_exist",
+      "id": "c9854ca6-d599-49fe-ae52-0850afac9ba6",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
