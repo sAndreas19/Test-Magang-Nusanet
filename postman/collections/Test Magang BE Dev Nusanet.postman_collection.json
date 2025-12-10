@@ -10,7 +10,27 @@
       "id": "d5bff60c-dea1-44d4-9f70-f32c4e3e96eb",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/schedules?start_date=2025-02-01&end_date=2025-03-25",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "schedules"
+          ],
+          "query": [
+            {
+              "key": "start_date",
+              "value": "2025-02-01"
+            },
+            {
+              "key": "end_date",
+              "value": "2025-03-25"
+            }
+          ]
+        }
       },
       "response": []
     },
@@ -19,7 +39,31 @@
       "id": "7abbe3f9-7803-4395-81b4-f203baf2da8d",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/schedules?start_date=2025-02-01&end_date=2025-03-25&user_id=002",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "schedules"
+          ],
+          "query": [
+            {
+              "key": "start_date",
+              "value": "2025-02-01"
+            },
+            {
+              "key": "end_date",
+              "value": "2025-03-25"
+            },
+            {
+              "key": "user_id",
+              "value": "002"
+            }
+          ]
+        }
       },
       "response": []
     },
@@ -28,7 +72,89 @@
       "id": "ad19b956-b2e9-40fe-800f-bc118d4757ac",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/schedules?start_date=2025-02-01&end_date=2025-03-25&user_id=123",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "schedules"
+          ],
+          "query": [
+            {
+              "key": "start_date",
+              "value": "2025-02-01"
+            },
+            {
+              "key": "end_date",
+              "value": "2025-03-25"
+            },
+            {
+              "key": "user_id",
+              "value": "123"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list_jadwal_invalid_date_range",
+      "id": "0eb6ace2-61d0-4ec4-a7a0-d92e51e387a7",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/schedules?start_date=2025-06-10&end_date=2025-05-01",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "schedules"
+          ],
+          "query": [
+            {
+              "key": "start_date",
+              "value": "2025-06-10"
+            },
+            {
+              "key": "end_date",
+              "value": "2025-05-01"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "list_jadwal_invalid_date_format",
+      "id": "d8a579d4-615a-46e5-b0b8-8107c1bf073f",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/schedules?start_date=2025-02-30&end_date=2025-03-01",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "schedules"
+          ],
+          "query": [
+            {
+              "key": "start_date",
+              "value": "2025-02-30"
+            },
+            {
+              "key": "end_date",
+              "value": "2025-03-01"
+            }
+          ]
+        }
       },
       "response": []
     },
@@ -37,7 +163,27 @@
       "id": "b779aa65-d663-4ea9-9079-379fda4a0e8c",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/check-schedule?date=2025-08-25&user_id=002",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "check-schedule"
+          ],
+          "query": [
+            {
+              "key": "date",
+              "value": "2025-08-25"
+            },
+            {
+              "key": "user_id",
+              "value": "002"
+            }
+          ]
+        }
       },
       "response": []
     },
@@ -46,7 +192,27 @@
       "id": "3712a918-87a9-47a1-abe8-ce9501e43b56",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/export-schedules?start_date=2025-02-01&end_date=2025-03-25",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "export-schedules"
+          ],
+          "query": [
+            {
+              "key": "start_date",
+              "value": "2025-02-01"
+            },
+            {
+              "key": "end_date",
+              "value": "2025-03-25"
+            }
+          ]
+        }
       },
       "response": []
     },
@@ -55,7 +221,31 @@
       "id": "a4132a58-762f-43ac-a4b2-a4bb272f6c5f",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/export-schedules?start_date=2025-06-01&end_date=2025-08-25&user_id=002",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "export-schedules"
+          ],
+          "query": [
+            {
+              "key": "start_date",
+              "value": "2025-06-01"
+            },
+            {
+              "key": "end_date",
+              "value": "2025-08-25"
+            },
+            {
+              "key": "user_id",
+              "value": "002"
+            }
+          ]
+        }
       },
       "response": []
     },
@@ -64,7 +254,31 @@
       "id": "c9854ca6-d599-49fe-ae52-0850afac9ba6",
       "request": {
         "method": "GET",
-        "header": []
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/export-schedules?start_date=2025-06-01&end_date=2025-08-25&user_id=055",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "export-schedules"
+          ],
+          "query": [
+            {
+              "key": "start_date",
+              "value": "2025-06-01"
+            },
+            {
+              "key": "end_date",
+              "value": "2025-08-25"
+            },
+            {
+              "key": "user_id",
+              "value": "055"
+            }
+          ]
+        }
       },
       "response": []
     }

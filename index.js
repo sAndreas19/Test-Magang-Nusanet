@@ -1,4 +1,3 @@
-// index.js
 import express from 'express';
 import { getScheduleRange, getShift, EMPLOYEES } from './src/shift.js';
 import { exportToStream } from './src/export.js';
@@ -9,38 +8,30 @@ const PORT = 3000;
 app.use(express.json());
 app.use(express.static('public'));
 
-// === FUNGSI VALIDASI USER ===
+// validasi user_id
 function validateUser(userId) {
     if (!userId) return true;
     const exists = EMPLOYEES.find(e => e.id === userId);
     return !!exists;
 }
 
-// === [BARU] FUNGSI VALIDASI TANGGAL STRICT ===
-// Mengecek apakah "2024-02-30" benar-benar ada di kalender
+// validasi tanggal
 function isValidDate(dateString) {
-    // 1. Cek Format YYYY-MM-DD pakai Regex
     const regex = /^\d{4}-\d{2}-\d{2}$/;
     if (!dateString.match(regex)) return false;
 
-    // 2. Cek apakah JavaScript melakukan "Autocorrect"?
     const date = new Date(dateString);
     const timestamp = date.getTime();
 
-    // Cek Invalid Date (misal input text ngawur)
     if (typeof timestamp !== 'number' || Number.isNaN(timestamp)) return false;
 
-    // INI KUNCINYA: Bandingkan Input String dengan Output ISO String
-    // Kalau input "2025-02-30", JS akan ubah jadi "2025-03-02"
-    // Karena stringnya beda, berarti tanggal itu GAIB (Tidak Valid).
     return date.toISOString().startsWith(dateString);
 }
 
-// 1. API: GET /api/schedules
+// GET /api/schedules
 app.get('/api/schedules', (req, res) => {
     const { start_date, end_date, user_id } = req.query;
 
-    // A. Validasi Parameter Wajib
     if (!start_date || !end_date) {
         return res.status(400).json({
             status: "error",
@@ -49,7 +40,6 @@ app.get('/api/schedules', (req, res) => {
         });
     }
 
-    // B. [BARU] Validasi Tanggal Strict (Cek Kalender Asli)
     if (!isValidDate(start_date)) {
         return res.status(400).json({
             status: "error",
@@ -65,7 +55,6 @@ app.get('/api/schedules', (req, res) => {
         });
     }
 
-    // C. Validasi Logika Range (Start > End)
     if (new Date(start_date) > new Date(end_date)) {
         return res.status(400).json({
             status: "error",
@@ -74,7 +63,6 @@ app.get('/api/schedules', (req, res) => {
         });
     }
 
-    // D. Validasi User
     if (user_id && !validateUser(user_id)) {
         return res.status(404).json({
             status: "error",
@@ -95,7 +83,7 @@ app.get('/api/schedules', (req, res) => {
     }
 });
 
-// 2. API: GET /api/check-schedule
+// GET /api/check-schedule
 app.get('/api/check-schedule', (req, res) => {
     const { user_id, date } = req.query;
 
@@ -135,12 +123,11 @@ app.get('/api/check-schedule', (req, res) => {
     });
 });
 
-// 3. API: GET /api/export-schedules
-// 3. API: GET /api/export-schedules
+// GET /api/export-schedules
 app.get('/api/export-schedules', async (req, res) => {
     const { start_date, end_date, user_id } = req.query;
 
-    // A. Validasi Parameter Wajib
+    // validasi Parameter
     if (!start_date || !end_date) {
         return res.status(400).json({ 
             status: "error", 
@@ -149,7 +136,6 @@ app.get('/api/export-schedules', async (req, res) => {
         });
     }
 
-    // B. Validasi Tanggal Strict
     if (!isValidDate(start_date) || !isValidDate(end_date)) {
         return res.status(400).json({
             status: "error",
@@ -158,7 +144,6 @@ app.get('/api/export-schedules', async (req, res) => {
         });
     }
 
-    // C. [FIX] Validasi Logika Range (Start > End) -- INI YANG KITA TAMBAHKAN
     if (new Date(start_date) > new Date(end_date)) {
         return res.status(400).json({
             status: "error",
@@ -167,7 +152,7 @@ app.get('/api/export-schedules', async (req, res) => {
         });
     }
 
-    // D. Validasi User
+    // validasi User
     if (user_id && !validateUser(user_id)) {
         return res.status(404).json({
             status: "error",
@@ -186,5 +171,5 @@ app.get('/api/export-schedules', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-    console.log(`🚀 API Server berjalan di http://localhost:${PORT}`);
+    console.log(`API Server berjalan di http://localhost:${PORT}`);
 });
