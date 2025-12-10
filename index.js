@@ -1,5 +1,5 @@
 import express from 'express';
-import { getScheduleRange, getShift, EMPLOYEES } from './src/shift.js';
+import { getScheduleJson, getShift, EMPLOYEES } from './src/shift.js';
 import { exportToStream } from './src/export.js';
 
 const app = express();
@@ -73,7 +73,7 @@ app.get('/api/schedules', (req, res) => {
     }
 
     try {
-        const data = getScheduleRange(start_date, end_date, user_id);
+        const data = getScheduleJson(start_date, end_date, user_id);
         res.status(200).json({
             status: "success",
             data: data,
