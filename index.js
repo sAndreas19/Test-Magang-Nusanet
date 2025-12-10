@@ -63,6 +63,7 @@ app.get('/api/schedules', (req, res) => {
         });
     }
 
+    // validasi User
     if (user_id && !validateUser(user_id)) {
         return res.status(404).json({
             status: "error",
@@ -100,6 +101,7 @@ app.get('/api/check-schedule', (req, res) => {
         });
     }
 
+    // validasi User
     const employee = EMPLOYEES.find(e => e.id === user_id);
     if (!employee) {
         return res.status(404).json({ 
