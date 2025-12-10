@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nusanet Shift Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { background-color: #f8f9fa; font-family: 'Inter', sans-serif; }
+        .card { border: none; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border-radius: 12px; }
+        .shift-cell { font-weight: bold; text-align: center; }
+        .shift-P { background-color: #d1e7dd !important;}
+        .shift-S { background-color: #fff3cd !important; }
+        .shift-M { background-color: #cfe2ff !important; }
+        .shift-L { background-color: #f8d7da !important; }
+    </style>
+</head>
+<body>
+
+<div id="app" class="container py-5">
+    
+    <div class="text-center mb-5">
+        <h2 class="fw-bold text-primary">Nusanet Shift Scheduler</h2>
+        <p class="text-muted">Generate & Export Jadwal Shift Karyawan</p>
+    </div>
+
+    <div class="card p-4 mb-4">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label fw-bold">Start Date</label>
+                <input type="date" v-model="form.start_date" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">End Date</label>
+                <input type="date" v-model="form.end_date" class="form-control">
+            </div>
+            <div class="col-md-3">
+                <label class="form-label fw-bold">User ID (Opsional)</label>
+                <select v-model="form.user_id" class="form-select">
+                    <option value="">Semua Karyawan</option>
+                    <option value="001">001 - Ahmad</option>
+                    <option value="002">002 - Widi</option>
+                    <option value="003">003 - Yono</option>
+                    <option value="004">004 - Yohan</option>
+                    <option value="999">123 - User yg tidak ada</option>
+                </select>
+            </div>
+            <div class="col-md-3 d-flex align-items-end gap-2">
+                <button @click="fetchData" class="btn btn-primary w-100" :disabled="loading">
+                    <span v-if="loading" class="spinner-border spinner-border-sm"></span>
+                    {{ loading ? 'Loading...' : 'Cek Jadwal' }}
+                </button>
+                <button @click="downloadExcel" class="btn btn-success w-100" :disabled="loading">
+                    Download
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div v-if="errorMessage" class="alert alert-danger d-flex align-items-center" role="alert">
+        ⚠️ &nbsp; <strong>Error:</strong> &nbsp; {{ errorMessage }}
+    </div>
+
+    <div v-if="schedules.length > 0" class="card p-4 overflow-auto">
+        <h5 class="fw-bold mb-3">Hasil Jadwal</h5>
+        <table class="table table-bordered table-hover">
+            <thead class="table-dark text-center">
+                <tr>
+                    <th style="width: 50px;">ID</th>
+                    <th style="width: 150px;">Nama</th>
+                    <th v-for="date in dateHeaders" :key="date">{{ formatDate(date) }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="user in schedules" :key="user.id">
+                    <td class="text-center fw-bold">{{ user.id }}</td>
+                    <td>{{ user.name }}</td>
+                    <td v-for="date in dateHeaders" :key="date" 
+                        class="shift-cell" 
+                        :class="'shift-' + user.schedule[date]">
+                        {{ user.schedule[date] || '-' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div v-if="!loading && schedules.length === 0 && !errorMessage" class="text-center text-muted mt-5">
+        <p>Silakan pilih tanggal dan klik "Cek Jadwal" untuk melihat data.</p>
+        <p>Silakan klik "Download" untuk mendownload data dalam file Excel.</p>
+    </div>
+
+</div>
+
+<script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="script.js"></script>
+
+
+</body>
+</html>
