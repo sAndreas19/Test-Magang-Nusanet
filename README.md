@@ -1,5 +1,7 @@
 # Nusanet Shift Scheduler (Internship Test)
 Aplikasi perhitungan siklus jadwal shift karyawan dengan pola rotasi dinamis, dilengkapi dashboard visual dan export Excel.
+<img width="1911" height="1008" alt="image" src="https://github.com/user-attachments/assets/c08caf0a-6faa-44aa-a9f7-f01bf60541d6" />
+
 
 ## Requirements
 Pastikan komputer Anda sudah terinstall:
